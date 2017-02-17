@@ -1,0 +1,662 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{HW4}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{Task 2}\label{task-2}
+
+\paragraph{Read in data}\label{read-in-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{n}{img\PYZus{}pts} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{./Files/image.txt}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+         \PY{n}{world\PYZus{}pts} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{./Files/world.txt}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+         
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Sample image points:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{img\PYZus{}pts}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{Sample world points:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{world\PYZus{}pts}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{2}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Sample image points:
+[[ 5.11770701  4.76538441]
+ [ 5.5236545   3.87032917]] 
+
+Sample world points:
+[[ 0.8518447   0.75947939  0.94975928]
+ [ 0.55793851  0.01423302  0.59617708]]
+    \end{Verbatim}
+
+    \paragraph{Solve for camera matrix P}\label{solve-for-camera-matrix-p}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c}{\PYZsh{} gets row of the form}
+        \PY{c}{\PYZsh{} [[X1 Y1 Z1 1 0 0 0 0 −x1X1 −x1Y1 −x1Z1 −x1],}
+        \PY{c}{\PYZsh{} [0 0 0 0 X1 Y1 Z1 1 −y1X1 −y1Y1 −y1Z1 −y1]]}
+        \PY{k}{def} \PY{n+nf}{get\PYZus{}row}\PY{p}{(}\PY{n}{x\PYZus{}i}\PY{p}{,} \PY{n}{X\PYZus{}w}\PY{p}{)}\PY{p}{:}
+            \PY{n}{row} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{n}{row}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}i}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}i}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}i}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}i}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+            \PY{n}{row}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}i}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}i}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}i}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{X\PYZus{}w}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}i}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{row}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{n}{A\PYZus{}mat} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+             \PY{n}{r} \PY{o}{=} \PY{n}{get\PYZus{}row}\PY{p}{(}\PY{n}{img\PYZus{}pts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{world\PYZus{}pts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+             \PY{n}{A\PYZus{}mat}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{r}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+             \PY{n}{A\PYZus{}mat}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{r}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+             
+         \PY{n}{A\PYZus{}mat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{A\PYZus{}mat}\PY{p}{)}
+         \PY{c}{\PYZsh{} print A\PYZus{}mat.shape}
+         
+         \PY{n}{V} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{svd}\PY{p}{(}\PY{n}{A\PYZus{}mat}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{n}{P\PYZus{}mat} \PY{o}{=} \PY{n}{V}\PY{p}{[}\PY{n+nb}{len}\PY{p}{(}\PY{n}{V}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{c}{\PYZsh{} print P\PYZus{}mat.shape}
+         
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{We get the camera matrix P as:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{P\PYZus{}mat}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+We get the camera matrix P as:
+[[  1.27000127e-01   2.54000254e-01   3.81000381e-01   5.08000508e-01]
+ [  5.08000508e-01   3.81000381e-01   2.54000254e-01   1.27000127e-01]
+ [  1.27000127e-01   1.94289029e-16   1.27000127e-01  -2.22044605e-16]]
+    \end{Verbatim}
+
+    \paragraph{Verify answer by reprojecting world
+points}\label{verify-answer-by-reprojecting-world-points}
+
+As can be seen, the image points and the reprojected image points
+closely correspond to each other. The difference between the 2 are
+almost 0
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{img\PYZus{}points\PYZus{}reprojected} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{X} \PY{o+ow}{in} \PY{n}{world\PYZus{}pts}\PY{p}{:}
+             \PY{n}{img\PYZus{}homog} \PY{o}{=} \PY{n}{P\PYZus{}mat}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+             \PY{n}{img\PYZus{}points\PYZus{}reprojected}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{img\PYZus{}homog}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{/}\PY{n}{img\PYZus{}homog}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{img\PYZus{}homog}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{/}\PY{n}{img\PYZus{}homog}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Given image points:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{img\PYZus{}pts}
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{Reprojected image points:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{img\PYZus{}points\PYZus{}reprojected}
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{Difference:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{img\PYZus{}pts} \PY{o}{\PYZhy{}} \PY{n}{img\PYZus{}points\PYZus{}reprojected}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Given image points:
+[[  5.11770701   4.76538441]
+ [  5.5236545    3.87032917]
+ [  7.16310171   7.35942066]
+ [  5.22216628   4.4279585 ]
+ [  5.60479614   4.67483648]
+ [ 13.59494885  10.05215495]
+ [  8.73452189   5.56420531]
+ [  6.22433952   3.90821885]
+ [  9.74763886   6.90423723]
+ [  5.09031079   4.5508513 ]]
+
+
+Reprojected image points:
+[[5.1177070095845512, 4.7653844064445083], [5.5236545022530548, 3.8703291749533317], [7.1631017123476957, 7.3594206563832989], [5.2221662777362265, 4.4279585004935562], [5.6047961393951118, 4.6748364822514068], [13.594948846275605, 10.052154948111069], [8.7345218880620887, 5.564205313535151], [6.224339521255974, 3.9082188503387831], [9.7476388596450469, 6.9042372297085111], [5.0903107941755881, 4.5508513049774946]]
+
+
+Difference:
+[[ -2.66453526e-15  -2.66453526e-15]
+ [ -4.44089210e-15  -4.44089210e-16]
+ [  0.00000000e+00   1.77635684e-15]
+ [ -1.77635684e-15   0.00000000e+00]
+ [ -8.88178420e-16   1.77635684e-15]
+ [  0.00000000e+00   0.00000000e+00]
+ [ -3.55271368e-15  -5.32907052e-15]
+ [ -5.32907052e-15  -2.66453526e-15]
+ [ -1.77635684e-15  -2.66453526e-15]
+ [ -2.66453526e-15   0.00000000e+00]]
+    \end{Verbatim}
+
+    \paragraph{World coordinates of the projection center of the
+camera}\label{world-coordinates-of-the-projection-center-of-the-camera}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}65}]:} \PY{n}{V\PYZus{}p} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{svd}\PY{p}{(}\PY{n}{P\PYZus{}mat}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{n}{camera\PYZus{}vec} \PY{o}{=} \PY{n}{V\PYZus{}p}\PY{p}{[}\PY{n+nb}{len}\PY{p}{(}\PY{n}{V\PYZus{}p}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+         
+         \PY{n}{camera\PYZus{}vec} \PY{o}{=} \PY{n}{camera\PYZus{}vec}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{/}\PY{n}{camera\PYZus{}vec}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{World coordinates of projection center of camera:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{camera\PYZus{}vec}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+World coordinates of projection center of camera:
+[ 1. -1. -1.]
+    \end{Verbatim}
+
+    \subsection{Task 4}\label{task-4}
+
+\subsubsection{Question 1}\label{question-1}
+
+\paragraph{a. What is the relation between the epipole and the epipolar
+line?}\label{a.-what-is-the-relation-between-the-epipole-and-the-epipolar-line}
+
+All epipolar lines in image 1 will intersect at the epipole
+corresponding to image 1
+
+\paragraph{b. How many epipoles exist in a set of two cameras?
+Explain.}\label{b.-how-many-epipoles-exist-in-a-set-of-two-cameras-explain.}
+
+When there are 2 cameras, the epipoles will be the point of intersection
+of the line joining the camera centres ie. the baseline and the image
+planes. Since there are 2 image planes, we can expect there are 2
+epipoles
+
+\paragraph{c. Given the fundamental matrix F in a set of two cameras,
+express the epipoles in the set as a function of
+F}\label{c.-given-the-fundamental-matrix-f-in-a-set-of-two-cameras-express-the-epipoles-in-the-set-as-a-function-of-f}
+
+Let the epipoles of first and second image be e and e'
+
+We have the property x'TFx = 0
+
+For any point x (other than e) the epipolar line l' = Fx contains the
+epipole e'.
+
+Thus e' satisfies e'T(Fx)=(e'TF)x = 0 for all x.
+
+Thus, e'TF = 0
+
+Using a similar argument, we can obtain that Fe = 0
+
+i.e.~e' and e are the left and right null-space of F respectively
+
+e' = null(FT)\\
+e = null(F)
+
+\paragraph{d. Second camera translated along Y-axis by distance
+d}\label{d.-second-camera-translated-along-y-axis-by-distance-d}
+
+The epipole is the point of intersection of the baseline with the image
+plane. In the setup below, it is seen that the 2 image planes are
+parallel to each other and the baseline. So, the image planes and the
+baseline will intersect each other at positive and negative infinity and
+the epipolar lines will be parallel to the baseline.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{def} \PY{n+nf}{disp}\PY{p}{(}\PY{n}{img}\PY{p}{,} \PY{n}{h}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{w}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{n}{w}\PY{p}{,}\PY{n}{h}\PY{p}{)}\PY{p}{)}
+            \PY{k}{if}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{title}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{title}\PY{p}{)}
+            \PY{n}{plt}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{img}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{n}{cm}\PY{o}{.}\PY{n}{gray}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{disp}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{./part\PYZus{}d.png}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW4_files/HW4_11_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{e. Second camera rotated with a rotation matrix
+R}\label{e.-second-camera-rotated-with-a-rotation-matrix-r}
+
+Reference:\\
+http://www1.cs.columbia.edu/\textasciitilde{}jebara/htmlpapers/SFM/node8.html
+http://www.ee.oulu.fi/research/imag/courses/Sturm/moons09.pdf
+
+When the second camera is only rotated with respect to the first, it
+means there will be no single line connecting the 2 camera centers, and
+hence, \textbf{there will be no baseline}. without a baseline, we cannot
+determine points which intersect the image planes. So, \textbf{the
+epipoles will be undefined} for this case. So, we cannot define a
+fundamental matrix or epipolar lines for this system.
+
+Also (ref http://www.ee.oulu.fi/research/imag/courses/Sturm/moons09.pdf,
+pg 383), given the intrinsic matrix is identity, we will be able to
+obtain a homography matrix transformation (with only rotation component)
+between to map a scene point M's image points m1 and m2
+
+ie. m2 = R.m1
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{disp}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{./part\PYZus{}e.png}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW4_files/HW4_13_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Question 3}\label{question-3}
+
+\paragraph{a. Find matching interest points using SIFT or
+Harris}\label{a.-find-matching-interest-points-using-sift-or-harris}
+
+First we read in the images
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c}{\PYZsh{} first we read in the images}
+         \PY{n}{img1} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{./Files/chapel2.png}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{img2} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{imread}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{./Files/chapel1.png}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{disp}\PY{p}{(}\PY{n}{img1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Chapel Left}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{disp}\PY{p}{(}\PY{n}{img2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Chapel Right}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW4_files/HW4_15_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW4_files/HW4_15_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We use the SIFT Detector to identify keypoints in the left and right
+images
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{sift} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{SIFT}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{kp1}\PY{p}{,} \PY{n}{des1} \PY{o}{=} \PY{n}{sift}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{img1}\PY{p}{,}\PY{n+nb+bp}{None}\PY{p}{)}
+         \PY{n}{img1c} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{drawKeypoints}\PY{p}{(}\PY{n}{img1}\PY{p}{,}\PY{n}{kp1}\PY{p}{)}
+         \PY{n}{disp}\PY{p}{(}\PY{n}{img1c}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Chapel Left With SIFT Points}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{n}{kp2}\PY{p}{,} \PY{n}{des2} \PY{o}{=} \PY{n}{sift}\PY{o}{.}\PY{n}{detectAndCompute}\PY{p}{(}\PY{n}{img2}\PY{p}{,}\PY{n+nb+bp}{None}\PY{p}{)}
+         \PY{n}{img2c} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{drawKeypoints}\PY{p}{(}\PY{n}{img2}\PY{p}{,}\PY{n}{kp2}\PY{p}{)}
+         \PY{n}{disp}\PY{p}{(}\PY{n}{img2c}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Chapel Right With SIFT Points}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW4_files/HW4_17_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW4_files/HW4_17_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We use the Brute Force Matcher to match the keypoints between the left
+and right images. We get a total of 461 matches
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c}{\PYZsh{} we match using BFMatcher}
+         \PY{n}{bf} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{BFMatcher}\PY{p}{(}\PY{n}{cv2}\PY{o}{.}\PY{n}{NORM\PYZus{}L2}\PY{p}{,} \PY{n}{crossCheck}\PY{o}{=}\PY{n+nb+bp}{True}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} Match descriptors.}
+         \PY{n}{matches} \PY{o}{=} \PY{n}{bf}\PY{o}{.}\PY{n}{match}\PY{p}{(}\PY{n}{des1}\PY{p}{,}\PY{n}{des2}\PY{p}{)}
+         \PY{n}{matches} \PY{o}{=} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{matches}\PY{p}{,} \PY{n}{key} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:}\PY{n}{x}\PY{o}{.}\PY{n}{distance}\PY{p}{)}
+         
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Number of matches:}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{matches}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Number of matches: 463
+    \end{Verbatim}
+
+    \paragraph{b. Use the set of matched points you found to estimate the
+fundamental matrix F automatically using RANSAC and the normalized
+8-point
+algorithm.}\label{b.-use-the-set-of-matched-points-you-found-to-estimate-the-fundamental-matrix-f-automatically-using-ransac-and-the-normalized-8-point-algorithm.}
+
+We use OpenCV's findFundamentalMat method to obtain the fundamental
+matrix using RANSAC. The underlying algorithm will be the 8-point
+algorithm.
+
+\textbf{i. Indicate what test you used for deciding inlier vs.~outlier.}
+
+We use the param1 parameter in the findFundamentalMat method as the
+test. It is the maximum distance from a point to an epipolar line in
+pixels, beyond which the point is considered an outlier and is not used
+for computing the final fundamental matrix. We set it to a value of 3 as
+the epipolar lines should pass within around 1 pixel of the inlier
+points as per the problem statement. If we reduce it to lower than 3, we
+don't get enough inlier points in all the surfaces in the image and this
+results in an inaccurate fundamental matrix and consequently, inaccurate
+epipolar lines.
+
+\textbf{ii. Display F after normalizing to unit length.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{pts1} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{pts2} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{i}\PY{p}{,}\PY{n}{m} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{matches}\PY{p}{)}\PY{p}{:}
+             \PY{n}{pts2}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{kp2}\PY{p}{[}\PY{n}{m}\PY{o}{.}\PY{n}{trainIdx}\PY{p}{]}\PY{o}{.}\PY{n}{pt}\PY{p}{)}
+             \PY{n}{pts1}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{kp1}\PY{p}{[}\PY{n}{m}\PY{o}{.}\PY{n}{queryIdx}\PY{p}{]}\PY{o}{.}\PY{n}{pt}\PY{p}{)}
+         
+         \PY{n}{pts1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{float32}\PY{p}{(}\PY{n}{pts1}\PY{p}{)}
+         \PY{n}{pts2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{float32}\PY{p}{(}\PY{n}{pts2}\PY{p}{)}
+         \PY{n}{F\PYZus{}prenorm}\PY{p}{,} \PY{n}{mask} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{findFundamentalMat}\PY{p}{(}\PY{n}{pts1}\PY{p}{,}\PY{n}{pts2}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{FM\PYZus{}RANSAC}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s}{Pre\PYZhy{}Normalized Fundamental Matrix:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{F\PYZus{}prenorm}
+         
+         \PY{n}{F} \PY{o}{=} \PY{n}{F\PYZus{}prenorm}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{norm}\PY{p}{(}\PY{n}{F\PYZus{}prenorm}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{Normalized Fundamental Matrix:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{F}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Pre-Normalized Fundamental Matrix:
+
+[[ -6.70832358e-07  -2.01041064e-05   9.96680080e-03]
+ [  8.09922509e-06   1.06504817e-05   1.28055730e-01]
+ [ -7.81529520e-03  -1.26661976e-01   1.00000000e+00]]
+
+
+Normalized Fundamental Matrix:
+
+[[ -6.60157458e-07  -1.97841914e-05   9.80819993e-03]
+ [  7.97034279e-06   1.04810015e-05   1.26017990e-01]
+ [ -7.69093106e-03  -1.24646414e-01   9.84087082e-01]]
+    \end{Verbatim}
+
+    \textbf{iii. Plot the outliers with green dots on top of the first
+image.}
+
+We plot the outliers in green and inliers in red for the first image
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c}{\PYZsh{} We then store only inlier points}
+         \PY{n}{pts1} \PY{o}{=} \PY{n}{pts1}\PY{p}{[}\PY{n}{mask}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{pts2} \PY{o}{=} \PY{n}{pts2}\PY{p}{[}\PY{n}{mask}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}
+         
+         \PY{c}{\PYZsh{} We also get the outlier points to display}
+         \PY{n}{outlier\PYZus{}kp1} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{inlier\PYZus{}kp1} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{mv} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{mask}\PY{p}{)}\PY{p}{:}
+             \PY{n}{match} \PY{o}{=} \PY{n}{matches}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+             \PY{k}{if}\PY{p}{(}\PY{n}{mv}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{outlier\PYZus{}kp1}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{kp1}\PY{p}{[}\PY{n}{match}\PY{o}{.}\PY{n}{queryIdx}\PY{p}{]}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{inlier\PYZus{}kp1}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{kp1}\PY{p}{[}\PY{n}{match}\PY{o}{.}\PY{n}{queryIdx}\PY{p}{]}\PY{p}{)}
+                 
+         \PY{n}{img1o} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{drawKeypoints}\PY{p}{(}\PY{n}{img1}\PY{p}{,}\PY{n}{outlier\PYZus{}kp1}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{255}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{img1i} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{drawKeypoints}\PY{p}{(}\PY{n}{img1}\PY{p}{,}\PY{n}{inlier\PYZus{}kp1}\PY{p}{,}\PY{n}{color}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{255}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{disp}\PY{p}{(}\PY{n}{img1i}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Inlier Points}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{disp}\PY{p}{(}\PY{n}{img1o}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Outlier Points}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW4_files/HW4_23_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW4_files/HW4_23_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{c. Choose 7 sets of matching points that are well separated
+(can be randomly chosen). Plot the corresponding epipolar lines (in red)
+and the points (in green) on each image. Show the two images (with
+plotted points and lines) next to each
+other.}\label{c.-choose-7-sets-of-matching-points-that-are-well-separated-can-be-randomly-chosen.-plot-the-corresponding-epipolar-lines-in-red-and-the-points-in-green-on-each-image.-show-the-two-images-with-plotted-points-and-lines-next-to-each-other.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{k}{def} \PY{n+nf}{drawlines}\PY{p}{(}\PY{n}{img\PYZus{}left\PYZus{}orig}\PY{p}{,}\PY{n}{img\PYZus{}right\PYZus{}orig}\PY{p}{,}\PY{n}{lines}\PY{p}{,}\PY{n}{pts1}\PY{p}{,}\PY{n}{pts2}\PY{p}{)}\PY{p}{:}
+             \PY{n}{r}\PY{p}{,}\PY{n}{c} \PY{o}{=} \PY{n}{img\PYZus{}left\PYZus{}orig}\PY{o}{.}\PY{n}{shape}
+             
+             \PY{n}{img\PYZus{}left} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{img\PYZus{}left\PYZus{}orig}\PY{p}{)}
+             \PY{n}{img\PYZus{}right} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{img\PYZus{}right\PYZus{}orig}\PY{p}{)}
+             
+             \PY{n}{img\PYZus{}left} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{img\PYZus{}left\PYZus{}orig}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}GRAY2BGR}\PY{p}{)}
+             \PY{n}{img\PYZus{}right} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{cvtColor}\PY{p}{(}\PY{n}{img\PYZus{}right\PYZus{}orig}\PY{p}{,}\PY{n}{cv2}\PY{o}{.}\PY{n}{COLOR\PYZus{}GRAY2BGR}\PY{p}{)}
+             
+             \PY{k}{for} \PY{n}{r}\PY{p}{,}\PY{n}{pt1}\PY{p}{,}\PY{n}{pt2} \PY{o+ow}{in} \PY{n+nb}{zip}\PY{p}{(}\PY{n}{lines}\PY{p}{,}\PY{n}{pts1}\PY{p}{,}\PY{n}{pts2}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{x0}\PY{p}{,}\PY{n}{y0} \PY{o}{=} \PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{int}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{r}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{/}\PY{n}{r}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{p}{]}\PY{p}{)}
+                 \PY{n}{x1}\PY{p}{,}\PY{n}{y1} \PY{o}{=} \PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{int}\PY{p}{,} \PY{p}{[}\PY{n}{c}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{r}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{+}\PY{n}{r}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{c}\PY{p}{)}\PY{o}{/}\PY{n}{r}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{p}{]}\PY{p}{)}
+                 \PY{n}{cv2}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{n}{img\PYZus{}left}\PY{p}{,} \PY{p}{(}\PY{n}{x0}\PY{p}{,}\PY{n}{y0}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{x1}\PY{p}{,}\PY{n}{y1}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{255}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+                 \PY{n}{cv2}\PY{o}{.}\PY{n}{circle}\PY{p}{(}\PY{n}{img\PYZus{}left}\PY{p}{,}\PY{n+nb}{tuple}\PY{p}{(}\PY{n}{pt1}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{255}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+                 \PY{n}{cv2}\PY{o}{.}\PY{n}{circle}\PY{p}{(}\PY{n}{img\PYZus{}right}\PY{p}{,}\PY{n+nb}{tuple}\PY{p}{(}\PY{n}{pt2}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{255}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+                 
+             \PY{k}{return} \PY{n}{img\PYZus{}left}\PY{p}{,}\PY{n}{img\PYZus{}right}
+         
+         \PY{c}{\PYZsh{} we choose the indices manually to ensure maximum separation between the epipolar lines}
+         \PY{c}{\PYZsh{} sample\PYZus{}indices = [99, 83, 53, 131, 162,  0,  18]}
+         \PY{n}{sample\PYZus{}indices} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{random\PYZus{}integers}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{pts2}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}
+         
+         \PY{n}{lines1} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{computeCorrespondEpilines}\PY{p}{(}\PY{n}{pts2}\PY{p}{[}\PY{n}{sample\PYZus{}indices}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{F}\PY{p}{)}
+         \PY{n}{lines1} \PY{o}{=} \PY{n}{lines1}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n}{img1e\PYZus{}1}\PY{p}{,}\PY{n}{img1e\PYZus{}2} \PY{o}{=} \PY{n}{drawlines}\PY{p}{(}\PY{n}{img1}\PY{p}{,}\PY{n}{img2}\PY{p}{,}\PY{n}{lines1}\PY{p}{,}\PY{n}{pts1}\PY{p}{[}\PY{n}{sample\PYZus{}indices}\PY{p}{]}\PY{p}{,}\PY{n}{pts2}\PY{p}{[}\PY{n}{sample\PYZus{}indices}\PY{p}{]}\PY{p}{)}
+          
+         \PY{n}{lines2} \PY{o}{=} \PY{n}{cv2}\PY{o}{.}\PY{n}{computeCorrespondEpilines}\PY{p}{(}\PY{n}{pts1}\PY{p}{[}\PY{n}{sample\PYZus{}indices}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{F}\PY{p}{)}
+         \PY{n}{lines2} \PY{o}{=} \PY{n}{lines2}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n}{img2e\PYZus{}1}\PY{p}{,}\PY{n}{img2e\PYZus{}2} \PY{o}{=} \PY{n}{drawlines}\PY{p}{(}\PY{n}{img2}\PY{p}{,}\PY{n}{img1}\PY{p}{,}\PY{n}{lines2}\PY{p}{,}\PY{n}{pts2}\PY{p}{[}\PY{n}{sample\PYZus{}indices}\PY{p}{]}\PY{p}{,}\PY{n}{pts1}\PY{p}{[}\PY{n}{sample\PYZus{}indices}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{f}\PY{p}{,} \PY{n}{axes} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{ncols}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{15}\PY{p}{)}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{img1e\PYZus{}1}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Chapel Left \PYZhy{} Epipolar Lines}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{img2e\PYZus{}1}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Chapel Right \PYZhy{} Epipolar Lines}\PY{l+s}{\PYZsq{}}\PY{p}{,}\PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{HW4_files/HW4_25_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
